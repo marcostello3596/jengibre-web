@@ -3,6 +3,7 @@
   const { $, $$, reduce, dibujarRama, prepararRama, mostrarRamaEntera, revelarLineas, hasGsap } = window.JG;
   const pre = $('#pre');
   const video = $('#hero-video');
+  const videosHero = $$('.hero__media video');
   const html = document.documentElement;
 
   const playVideo = (v) => { if (!v) return; v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
@@ -10,9 +11,8 @@
   /* Sin GSAP (CDN caído) o con movimiento reducido: todo visible y quieto. */
   if (!hasGsap || reduce) {
     if (pre) pre.hidden = true;
-    $$('.hero__overlay').forEach((o) => { o.style.opacity = 1; });
     $$('[data-rama]').forEach((svg) => { prepararRama(svg); mostrarRamaEntera(svg); });
-    if (!reduce) playVideo(video);
+    if (!reduce) videosHero.forEach(playVideo);
     $$('video[data-autoplay]').forEach((v) => { v.preload = 'auto'; });
     return;
   }
@@ -24,14 +24,14 @@
     const tl = gsap.timeline();
     tl.from('.hero__titulo .l__in', { yPercent: 115, duration: 1.4, ease: 'expo.out', stagger: 0.12 })
       .from('.hero__meta .label', { opacity: 0, y: 12, duration: 0.8, stagger: 0.1, ease: 'power2.out' }, 0.3)
-      .from('.hero__arco', { yPercent: 14, duration: 1.6, ease: 'expo.out' }, 0.15)
+      .from('.hero__arco', { yPercent: 14, duration: 1.6, ease: 'expo.out', stagger: 0.12 }, 0.15)
       .from('.nav', { yPercent: -100, duration: 1, ease: 'expo.out' }, 0.4)
       .add(dibujarRama($('[data-rama="hero"]'), 2.2), 0.5)
       .add(() => {
         // la rama lateral queda meciéndose apenas
         gsap.to('.hero__rama', { rotate: '+=2.5', duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
       });
-    playVideo(video);
+    videosHero.forEach(playVideo);
     return tl;
   }
 
@@ -88,9 +88,9 @@
     const tl = gsap.timeline({
       scrollTrigger: { trigger: '.hero__media-wrap', start: 'top 92%', end: 'center center', scrub: 1 }
     });
-    tl.fromTo('.hero__arco', { scale: 0.78 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+    tl.fromTo('.hero__arco', { scale: 0.8 }, { scale: 1, ease: 'none', duration: 1, stagger: 0.08 }, 0)
       .fromTo('.hero__media video', { scale: 1.3 }, { scale: 1.02, ease: 'none', duration: 1 }, 0)
-      .to('.hero__overlay', { opacity: 1, duration: 0.3 }, 0.7);
+      .fromTo('.hero__rotulo, .hero__horario', { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.05 }, 0.65);
     // En desktop la ventana se queda un momento quieta en el centro
     if (desktop) ScrollTrigger.create({ trigger: '.hero__media-wrap', start: 'center center', end: '+=30%', pin: true, pinSpacing: true });
     gsap.to('.hero__titulo', { yPercent: -25, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -101,7 +101,7 @@
 
   /* ---------- Parallax de la tela de ramas y fotos ---------- */
   $$('[data-speed]').forEach((el) => {
-    gsap.to(el, { yPercent: +el.dataset.speed * 3, ease: 'none', scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.to(el, { yPercent: +el.dataset.speed * 1.5, ease: 'none', scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } });
   });
   $$('[data-parallax]').forEach((img) => {
     gsap.fromTo(img, { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
