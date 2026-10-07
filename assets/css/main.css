@@ -4,8 +4,8 @@
 :root {
   --papel: #EDEAE0;      /* beige clarito: fondo */
   --papel-2: #E4DFD0;    /* papel un tono más oscuro, para tono sobre tono */
-  --arena: #DCC986;      /* beige arena: detalles */
-  --oliva: #727D71;      /* verde oliva: bloques y logo */
+  --arena: #E8DECD;      /* beige arena: detalles */
+  --oliva: #989A82;      /* verde oliva: bloques y logo */
   --tinta: #3B4239;      /* verde profundo: texto */
   --terracota: #964E2C;  /* acento: reservar y precios */
   --linea: rgba(59, 66, 57, .22);
@@ -46,12 +46,12 @@ a { color: inherit; }
 ::selection { background: var(--arena); color: var(--tinta); }
 :focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; }
 
-/* Grano de papel en toda la página */
+/* Grano de papel fino y parejo en toda la página */
 .grano {
   position: fixed; inset: 0; z-index: 90; pointer-events: none;
   background-image: url("../img/grano.webp");
-  background-size: cover; background-position: center;
-  mix-blend-mode: multiply; opacity: .45;
+  background-size: 256px 256px; background-repeat: repeat;
+  mix-blend-mode: multiply; opacity: .6;
 }
 
 .label {
