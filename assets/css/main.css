@@ -46,13 +46,6 @@ a { color: inherit; }
 ::selection { background: var(--arena); color: var(--tinta); }
 :focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; }
 
-/* Grano de papel fino y parejo en toda la página */
-.grano {
-  position: fixed; inset: 0; z-index: 90; pointer-events: none;
-  background-image: url("../img/grano.webp");
-  background-size: 256px 256px; background-repeat: repeat;
-  mix-blend-mode: multiply; opacity: .6;
-}
 
 .label {
   font-family: var(--f-texto); font-size: var(--t-label); font-weight: 600;
@@ -142,25 +135,40 @@ html.sin-pre .pre { display: none; }
 .hero__titulo .l2 { padding-left: 24vw; font-style: italic; color: var(--oliva); }
 .hero__titulo .l3 { justify-self: end; padding-right: 3vw; }
 .hero__rama { left: -5vw; top: 38%; transform: rotate(18deg); }
-.hero__media-wrap { position: relative; height: 100vh; margin-top: clamp(28px, 4vw, 56px); }
+.hero__media-wrap {
+  position: relative; display: flex; justify-content: center;
+  padding: clamp(40px, 6vw, 96px) var(--gutter) clamp(64px, 8vw, 128px);
+}
+/* La ventana en arco, como las del local: crece con el scroll sin cambiar de forma */
+.hero__arco {
+  position: relative; width: min(44vw, calc((100vh - 250px) * .8)); aspect-ratio: 4 / 5;
+  transform-origin: 50% 100%;
+}
+.hero__arco::before {
+  content: ""; position: absolute; inset: -16px -16px 0; pointer-events: none;
+  border: 1px solid var(--oliva); border-bottom: 0; border-radius: 9999px 9999px 0 0;
+}
 .hero__media {
-  position: absolute; inset: 0;
-  clip-path: inset(0 28% 0 28% round 48vw 48vw 0 0);
-  overflow: hidden; background: var(--tinta);
+  position: absolute; inset: 0; overflow: hidden; background: var(--tinta);
+  border-radius: 9999px 9999px 0 0; clip-path: inset(0 round 9999px 9999px 0 0);
+}
+.hero__media::after {
+  content: ""; position: absolute; inset: 45% 0 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(30, 34, 29, .55), rgba(30, 34, 29, 0));
 }
 .hero__media video, .hero__media img { width: 100%; height: 100%; object-fit: cover; }
 .hero__overlay {
-  position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(24px, 5vw, 64px);
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+  position: absolute; left: 10%; right: 10%; bottom: clamp(24px, 7%, 56px); z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
   color: var(--papel); opacity: 0;
 }
 .hero__overlay p { margin: 0; font: italic 500 var(--t-h3)/1 var(--f-display); max-width: 14ch; }
-.hero__horario { font-weight: 600; }
+.hero__horario { font-weight: 600; white-space: nowrap; }
 
 /* ---------- Manifiesto ---------- */
 .manifiesto { position: relative; padding: clamp(96px, 14vw, 220px) var(--gutter) clamp(80px, 10vw, 160px); overflow: hidden; }
 .tela { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.tela img { position: absolute; opacity: .55; width: clamp(320px, 46vw, 760px); }
+.tela img { position: absolute; opacity: .3; width: clamp(320px, 46vw, 760px); }
 .tela .t1 { left: -8%; top: 4%; transform: rotate(-12deg); }
 .tela .t2 { right: -10%; top: 30%; transform: rotate(160deg); width: clamp(360px, 54vw, 900px); }
 .tela .t3 { left: 18%; bottom: -12%; transform: rotate(28deg); }
@@ -186,11 +194,15 @@ html.sin-pre .pre { display: none; }
 /* ---------- Momentos del día ---------- */
 .momentos { position: relative; padding-top: clamp(80px, 10vw, 160px); }
 .momentos__pin { overflow: hidden; }
+@media (min-width: 901px) {
+  .momentos__pin { height: 100vh; display: flex; align-items: center; }
+  .momentos__pista { padding-block: clamp(72px, 10vh, 112px) clamp(24px, 4vh, 48px); }
+}
 .momentos__pista { display: flex; gap: clamp(24px, 4vw, 72px); padding: clamp(40px, 6vw, 80px) var(--gutter) clamp(80px, 9vw, 140px); width: max-content; }
-.momento { width: clamp(300px, 34vw, 560px); display: grid; gap: 22px; align-content: start; }
-.momento:nth-child(even) { margin-top: clamp(40px, 8vw, 140px); }
+.momento { width: clamp(260px, min(34vw, 40vh), 520px); display: grid; gap: 18px; align-content: start; }
+.momento:nth-child(even) { margin-top: clamp(24px, 7vh, 96px); }
 .momento__hora { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--linea); padding-bottom: 12px; }
-.momento__nombre { font: italic 500 clamp(3rem, 6.5vw, 6.5rem)/.9 var(--f-display); color: var(--oliva); margin: 0; }
+.momento__nombre { font: italic 500 clamp(2.6rem, min(6.5vw, 9vh), 6.5rem)/.9 var(--f-display); color: var(--oliva); margin: 0; }
 .momento__media { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 999px 999px 0 0; background: var(--papel-2); }
 .momento__media img, .momento__media video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
 .momento p { margin: 0; max-width: 36ch; }
@@ -320,6 +332,11 @@ html.sin-pre .pre { display: none; }
 .item__desc { grid-column: 1 / -1; margin: 0; font-size: .92rem; max-width: 58ch; }
 .carta-nota { font-size: .85rem; max-width: 60ch; }
 
+/* ---------- Textura de papel: solo en los fondos ---------- */
+body, .pre, .nav.is-solida, .menu, .panel, .eventos, .playroom, .pie, .pie__panel, .reserva__caja, .filtros {
+  background-image: url("../img/ruido.png"); background-size: 128px 128px; background-repeat: repeat;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nav { grid-template-columns: 1fr auto; }
@@ -331,8 +348,10 @@ html.sin-pre .pre { display: none; }
   .hero__titulo .l1 { padding-left: 0; }
   .hero__titulo .l2 { padding-left: 10vw; }
   .hero__titulo .l3 { padding-right: 0; }
-  .hero__media-wrap { height: 78vh; }
-  .hero__media { clip-path: inset(0 8% 0 8% round 46vw 46vw 0 0); }
+  .hero__arco { width: min(80vw, calc((100svh - 140px) * .78)); }
+  .hero__arco::before { inset: -10px -10px 0; }
+  .hero__overlay { left: 5%; right: 5%; }
+  .hero__horario { letter-spacing: .12em; font-size: .62rem; }
   .manifiesto__texto { margin-right: 0; text-align: left; margin-left: 0; }
   .manifiesto__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .panel { grid-column: 1; margin-right: 0; }
@@ -362,7 +381,6 @@ html.sin-pre .pre { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
-  .hero__media { clip-path: inset(0 0 0 0); }
   .hero__overlay { opacity: 1; }
   .momentos__pista { width: auto; flex-wrap: wrap; }
 }

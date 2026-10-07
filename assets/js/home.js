@@ -10,6 +10,7 @@
   /* Sin GSAP (CDN caído) o con movimiento reducido: todo visible y quieto. */
   if (!hasGsap || reduce) {
     if (pre) pre.hidden = true;
+    $$('.hero__overlay').forEach((o) => { o.style.opacity = 1; });
     $$('[data-rama]').forEach((svg) => { prepararRama(svg); mostrarRamaEntera(svg); });
     if (!reduce) playVideo(video);
     $$('video[data-autoplay]').forEach((v) => { v.preload = 'auto'; });
@@ -23,7 +24,7 @@
     const tl = gsap.timeline();
     tl.from('.hero__titulo .l__in', { yPercent: 115, duration: 1.4, ease: 'expo.out', stagger: 0.12 })
       .from('.hero__meta .label', { opacity: 0, y: 12, duration: 0.8, stagger: 0.1, ease: 'power2.out' }, 0.3)
-      .from('.hero__media', { yPercent: 18, duration: 1.6, ease: 'expo.out' }, 0.15)
+      .from('.hero__arco', { yPercent: 14, duration: 1.6, ease: 'expo.out' }, 0.15)
       .from('.nav', { yPercent: -100, duration: 1, ease: 'expo.out' }, 0.4)
       .add(dibujarRama($('[data-rama="hero"]'), 2.2), 0.5)
       .add(() => {
@@ -81,18 +82,17 @@
     pre.addEventListener('click', saltear, { once: true });
   }
 
-  /* ---------- Hero: el arco se abre hasta ocupar la pantalla ---------- */
+  /* ---------- Hero: la ventana en arco crece con el scroll (la forma no cambia) ---------- */
   mm.add({ desktop: '(min-width: 901px)', mobile: '(max-width: 900px)' }, (ctx) => {
     const { desktop } = ctx.conditions;
-    const desde = desktop ? 'inset(0% 28% 0% 28% round 48vw 48vw 0vw 0vw)' : 'inset(0% 8% 0% 8% round 46vw 46vw 0vw 0vw)';
-    gsap.set('.hero__media', { clipPath: desde });
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: '.hero__media-wrap', start: desktop ? 'top 62%' : 'top 25%', end: desktop ? 'top -40%' : 'top -30%', scrub: 1 }
+      scrollTrigger: { trigger: '.hero__media-wrap', start: 'top 92%', end: 'center center', scrub: 1 }
     });
-    tl.to('.hero__media', { clipPath: 'inset(0% 0% 0% 0% round 0vw 0vw 0vw 0vw)', ease: 'none', duration: 1 }, 0)
-      .fromTo('.hero__media video', { scale: 1.18 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+    tl.fromTo('.hero__arco', { scale: 0.78 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+      .fromTo('.hero__media video', { scale: 1.3 }, { scale: 1.02, ease: 'none', duration: 1 }, 0)
       .to('.hero__overlay', { opacity: 1, duration: 0.3 }, 0.7);
-    ScrollTrigger.create({ trigger: '.hero__media-wrap', start: 'top top', end: '+=40%', pin: desktop, pinSpacing: true });
+    // En desktop la ventana se queda un momento quieta en el centro
+    if (desktop) ScrollTrigger.create({ trigger: '.hero__media-wrap', start: 'center center', end: '+=30%', pin: true, pinSpacing: true });
     gsap.to('.hero__titulo', { yPercent: -25, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   });
 
@@ -138,17 +138,36 @@
   mm.add('(min-width: 901px) and (hover: hover)', () => {
     const caja = $('.cursor-foto');
     const fotos = $$('img', caja);
+    const lista = $('.platos__lista');
     const xTo = gsap.quickTo(caja, 'x', { duration: 0.6, ease: 'power3' });
     const yTo = gsap.quickTo(caja, 'y', { duration: 0.6, ease: 'power3' });
-    const mover = (e) => { xTo(e.clientX); yTo(e.clientY); };
-    const lista = $('.platos__lista');
-    lista.addEventListener('mousemove', mover);
-    lista.addEventListener('mouseenter', () => gsap.to(caja, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }));
-    lista.addEventListener('mouseleave', () => gsap.to(caja, { opacity: 0, scale: 0.8, duration: 0.4, ease: 'power3.in' }));
-    $$('.plato').forEach((pl) => pl.addEventListener('mouseenter', () => {
-      fotos.forEach((f) => f.classList.toggle('is-on', f.dataset.k === pl.dataset.foto));
-    }));
-    return () => { lista.removeEventListener('mousemove', mover); };
+    let px = -1, py = -1, visible = false, actual = null;
+
+    const mostrar = () => { if (visible) return; visible = true; gsap.to(caja, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out', overwrite: 'auto' }); };
+    const ocultar = () => { if (!visible) return; visible = false; gsap.to(caja, { opacity: 0, scale: 0.8, duration: 0.35, ease: 'power3.in', overwrite: 'auto' }); };
+    const elegir = (k) => { if (k === actual) return; actual = k; fotos.forEach((f) => f.classList.toggle('is-on', f.dataset.k === k)); };
+
+    // Decide qué mostrar según lo que haya debajo del puntero (sirve al mover el mouse y al scrollear)
+    const revisar = () => {
+      if (px < 0) return;
+      const el = document.elementFromPoint(px, py);
+      const plato = el && el.closest('.plato');
+      if (plato && lista.contains(plato)) { elegir(plato.dataset.foto); mostrar(); } else ocultar();
+    };
+    const mover = (e) => { px = e.clientX; py = e.clientY; xTo(px); yTo(py); revisar(); };
+    let pendiente = false;
+    const alScrollear = () => { if (pendiente) return; pendiente = true; requestAnimationFrame(() => { pendiente = false; revisar(); }); };
+    const salir = () => { px = -1; ocultar(); };
+
+    window.addEventListener('mousemove', mover, { passive: true });
+    window.addEventListener('scroll', alScrollear, { passive: true });
+    document.documentElement.addEventListener('mouseleave', salir);
+    return () => {
+      window.removeEventListener('mousemove', mover);
+      window.removeEventListener('scroll', alScrollear);
+      document.documentElement.removeEventListener('mouseleave', salir);
+      ocultar();
+    };
   });
   gsap.from('.plato', { opacity: 0, y: 30, duration: 1, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.platos__lista', start: 'top 85%', once: true } });
 
