@@ -195,8 +195,14 @@ html.sin-pre .pre { display: none; }
 .momentos { position: relative; padding-top: clamp(80px, 10vw, 160px); }
 .momentos__pin { overflow: hidden; }
 @media (min-width: 901px) {
-  .momentos__pin { height: 100vh; display: flex; align-items: center; }
-  .momentos__pista { padding-block: clamp(72px, 10vh, 112px) clamp(24px, 4vh, 48px); }
+  /* El carril fijo se centra en el espacio que queda debajo del menú, así nada queda tapado */
+  .momentos__pin { height: 100vh; box-sizing: border-box; padding: 116px 0 16px; display: flex; align-items: center; }
+  .momentos__pista { padding-block: 0; }
+  .momento { width: clamp(240px, 30vw, 500px); gap: 14px; }
+  .momento:nth-child(even) { margin-top: clamp(12px, 4vh, 64px); }
+  .momento__nombre { font-size: clamp(2.2rem, min(6vw, 7.5vh), 6rem); }
+  .momento__media { max-height: calc(92vh - 355px); }
+  .momento p { font-size: .95rem; line-height: 1.5; }
 }
 .momentos__pista { display: flex; gap: clamp(24px, 4vw, 72px); padding: clamp(40px, 6vw, 80px) var(--gutter) clamp(80px, 9vw, 140px); width: max-content; }
 .momento { width: clamp(260px, min(34vw, 40vh), 520px); display: grid; gap: 18px; align-content: start; }
