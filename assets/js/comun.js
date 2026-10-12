@@ -48,29 +48,6 @@
   };
   window.addEventListener('scroll', alScroll, { passive: true });
 
-  /* ---------- Menú en celular ---------- */
-  const menu = $('#menu');
-  const abrir = $('#menu-abrir');
-  function cerrarMenu() {
-    if (!menu || menu.hidden) return;
-    menu.hidden = true;
-    abrir && abrir.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('is-locked');
-    lenis && lenis.start();
-    abrir && abrir.focus();
-  }
-  if (menu && abrir) {
-    abrir.addEventListener('click', () => {
-      menu.hidden = false;
-      abrir.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('is-locked');
-      lenis && lenis.stop();
-      $('#menu-cerrar').focus();
-      if (hasGsap && !reduce) gsap.from($$('li', menu), { yPercent: 40, opacity: 0, stagger: 0.05, duration: 0.7, ease: 'power3.out' });
-    });
-    $('#menu-cerrar').addEventListener('click', cerrarMenu);
-  }
-
   /* ---------- Rama dibujada: arma los trazos de la máscara ---------- */
   const SVGNS = 'http://www.w3.org/2000/svg';
   function prepararRama(svg) {
@@ -155,14 +132,12 @@
     };
     $$('[data-reservar]').forEach((b) => b.addEventListener('click', (e) => {
       e.preventDefault();
-      cerrarMenu();
       abrirReserva(b.dataset.motivo);
     }));
     $$('[data-cerrar-reserva]').forEach((b) => b.addEventListener('click', cerrarReserva));
     panel.addEventListener('click', (e) => { if (e.target === panel) cerrarReserva(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !panel.hidden) cerrarReserva();
-      if (e.key === 'Escape' && menu && !menu.hidden) cerrarMenu();
     });
 
     form.addEventListener('submit', (e) => {
@@ -217,7 +192,7 @@
     if (!hasGsap || reduce || !window.SplitText) return;
     const split = SplitText.create(el, { type: 'lines', mask: 'lines', linesClass: 'linea-split' });
     gsap.from(split.lines, {
-      yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: 0.08,
+      yPercent: 140, duration: 1.2, ease: 'expo.out', stagger: 0.08,
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
       ...opts
     });

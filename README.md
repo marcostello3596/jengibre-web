@@ -4,7 +4,7 @@ Sitio estático (HTML, CSS y JS). Se sube tal cual a Hostinger: el contenido de 
 
 ## Antes de publicar
 
-1. **WhatsApp e Instagram**: completar `assets/js/config.js`.
+1. **WhatsApp e Instagram**: se cargan en `assets/js/config.js` (WhatsApp ya está; falta Instagram).
    - `whatsapp`: número en formato internacional, solo dígitos (ej. `5492611234567`).
    - `whatsappTexto`: cómo se muestra en el footer (ej. `+54 9 261 123 4567`).
    - `instagram`: URL del perfil. Si queda vacío, el botón no aparece.
@@ -18,7 +18,7 @@ Sitio estático (HTML, CSS y JS). Se sube tal cual a Hostinger: el contenido de 
 - `index.html`: home (preloader, hero con video, manifiesto, momentos del día, platos, eventos, playroom, footer).
 - `carta.html`: carta con filtros.
 - `assets/css/main.css`: estilos y paleta de la marca.
-- `assets/js/comun.js`: scroll suave (Lenis), navegación, menú del celular, panel de reserva y dibujo de la rama.
+- `assets/js/comun.js`: scroll suave (Lenis), navegación, panel de reserva y dibujo de la rama.
 - `assets/js/home.js` y `assets/js/carta.js`: animaciones de cada página (GSAP con ScrollTrigger y SplitText).
 - `assets/js/rama-trazos.js`: los trazos de línea central de la rama del logo, usados como máscara para que se dibuje.
 - GSAP 3.15 y Lenis 1.3 se cargan desde cdnjs y jsDelivr.

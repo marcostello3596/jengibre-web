@@ -100,19 +100,6 @@ html.sin-pre .pre { display: none; }
 .nav__logo { display: grid; justify-items: center; gap: 4px; text-decoration: none; color: var(--oliva); }
 .nav__logo svg { width: 46px; height: auto; }
 .nav__logo img { width: 112px; }
-.nav__menu-btn { display: none; justify-self: end; background: none; border: 0; color: inherit; font: 600 .74rem/1 var(--f-texto); letter-spacing: .2em; text-transform: uppercase; min-height: 44px; padding: 0 4px; cursor: pointer; }
-
-.menu {
-  position: fixed; inset: 0; z-index: 150; background: var(--oliva); color: var(--papel);
-  padding: calc(env(safe-area-inset-top, 0px) + 96px) var(--gutter) 40px;
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.menu[hidden] { display: none; }
-.menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.menu a { font: 500 clamp(2.4rem, 11vw, 4rem)/1.1 var(--f-display); text-decoration: none; }
-.menu a em { font-style: italic; }
-.menu__pie { font-size: .9rem; line-height: 1.6; }
-.menu__cerrar { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 18px); right: var(--gutter); background: none; border: 0; color: inherit; font: 600 .74rem/1 var(--f-texto); letter-spacing: .2em; text-transform: uppercase; min-height: 44px; cursor: pointer; }
 
 /* ---------- Rama dibujada (preloader y laterales) ---------- */
 .rama-draw { overflow: visible; }
@@ -338,19 +325,22 @@ html.sin-pre .pre { display: none; }
 .item__desc { grid-column: 1 / -1; margin: 0; font-size: .92rem; max-width: 58ch; }
 .carta-nota { font-size: .85rem; max-width: 60ch; }
 
+/* ---------- Revelado por líneas (SplitText) ----------
+   La máscara recorta en el borde de la línea; con interlineados cortos se comían
+   los descendentes (g, p, q). Se agranda hacia abajo sin mover el texto. */
+.linea-split-mask { padding-bottom: .26em; margin-bottom: -.26em; }
+
 /* ---------- Textura de papel: solo en los fondos ---------- */
-body, .pre, .nav.is-solida, .menu, .panel, .eventos, .playroom, .pie, .pie__panel, .reserva__caja, .filtros {
+body, .pre, .nav.is-solida, .panel, .eventos, .playroom, .pie, .pie__panel, .reserva__caja, .filtros {
   background-image: url("../img/ruido.png"); background-size: 128px 128px; background-repeat: repeat;
 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .nav { grid-template-columns: 1fr auto; }
-  .nav__lista { display: none; }
-  .nav__logo { justify-self: start; justify-items: start; grid-auto-flow: column; align-items: center; gap: 10px; }
-  .nav__logo svg { width: 34px; }
-  .nav__logo img { width: 96px; }
-  .nav__menu-btn { display: block; }
+  .nav__logo { grid-auto-flow: column; align-items: center; gap: 8px; }
+  .nav__logo svg { width: 30px; }
+  .nav__logo img { width: 84px; }
+  .nav__lista a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
   .hero__titulo .l1 { padding-left: 0; }
   .hero__titulo .l2 { padding-left: 10vw; }
   .hero__titulo .l3 { padding-right: 0; }
@@ -384,6 +374,9 @@ body, .pre, .nav.is-solida, .menu, .panel, .eventos, .playroom, .pie, .pie__pane
   .carta-hero h1 { position: relative; z-index: 1; }
 }
 @media (max-width: 520px) {
+  .nav__lista a { letter-spacing: .14em; }
+  .nav__logo svg { width: 26px; }
+  .nav__logo img { width: 74px; }
   .fila { grid-template-columns: minmax(0, 1fr); }
   .hero__meta .label:last-child { display: none; }
 }

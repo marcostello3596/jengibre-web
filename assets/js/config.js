@@ -1,10 +1,10 @@
-/* Datos de contacto de Jengibre. Completar antes de publicar.
+/* Datos de contacto de Jengibre.
    whatsapp: número en formato internacional, solo dígitos (ej. 5492611234567).
    whatsappTexto: cómo se muestra en el footer (ej. +54 9 261 123 4567).
    instagram: URL completa del perfil. */
 window.JENGIBRE = {
-  whatsapp: '',
-  whatsappTexto: '',
+  whatsapp: '5492616601830',
+  whatsappTexto: '+54 9 261 660 1830',
   instagram: '',
   horaApertura: 9,
   horaCierre: 23
