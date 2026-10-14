@@ -2,7 +2,7 @@
    grupo: a qué filtro pertenece cada sección. precio: null si la sección tiene precio único. */
 window.CARTA = [
   {
-    id: 'cafeteria', grupo: 'cafeteria', titulo: 'Cafetería', nota: 'De 9 a 23 h.',
+    id: 'cafeteria', grupo: 'cafeteria', titulo: 'Cafetería', nota: 'De 9 a 00 h.',
     items: [
       { n: 'Café pocillo', p: 2800 },
       { n: 'Café doble', p: 3700 },
@@ -94,6 +94,25 @@ window.CARTA = [
       { n: 'Brownie de chocolate negro', d: 'Con helado de crema americana.', p: 9500 },
       { n: 'Brownie de chocolate blanco', d: 'Con arándanos y helado de crema americana.', p: 9500 },
       { n: 'Crumble de manzana', d: 'Con helado de crema americana.', p: 12000 }
+    ]
+  },
+  {
+    id: 'bendita-gula', grupo: 'postres', titulo: 'Postres de Bendita\u00a0Gula', logo: 'assets/img/bendita-gula-oliva.png',
+    nota: 'La pastelería de Bendita Gula, en nuestra mesa.',
+    items: [
+      { n: 'Tiramisú' },
+      { n: 'Tarta de ricota' },
+      { n: 'Cheesecake NY', d: 'De frutos rojos.' },
+      { n: 'Brownie Nutella' },
+      { n: 'Brownie Gitano', d: 'Con frutillas frescas, cortadas en el momento.' },
+      { n: 'Chocotorta' },
+      { n: 'Cookies and Cream', d: 'De Oreo.' },
+      { n: 'Carrot cake' },
+      { n: 'Lemon pie' },
+      { n: 'Tarta Cabsha' },
+      { n: 'Torta Matilde' },
+      { n: 'Red velvet' },
+      { n: 'Lemon Gula' }
     ]
   }
 ];

@@ -19,6 +19,15 @@
     cabeza.innerHTML = `<span class="label">${sec.items.length} opciones</span><h2 id="t-${sec.id}"></h2>${sec.nota ? '<p></p>' : ''}`;
     cabeza.querySelector('h2').textContent = sec.titulo;
     if (sec.nota) cabeza.querySelector('p').textContent = sec.nota;
+    if (sec.logo) {
+      // Logo de la marca que firma la sección (ej. Bendita Gula); el título ya la nombra
+      const logo = document.createElement('img');
+      logo.className = 'seccion-carta__logo';
+      logo.src = sec.logo;
+      logo.alt = '';
+      logo.loading = 'lazy';
+      cabeza.insertBefore(logo, cabeza.querySelector('h2'));
+    }
     const ul = document.createElement('ul');
     ul.className = 'seccion-carta__items';
     sec.items.forEach((it) => {
