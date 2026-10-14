@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jengibre</title>
-<meta name="description" content="Jengibre, café, restaurante y playroom en Av. Belgrano 1227, Mendoza. Cafetería y cocina de 9 a 23 h.">
+<meta name="description" content="Jengibre, café, restaurante y playroom en Av. Belgrano 1227, Mendoza. Abierto todos los días de 9 a 00 h.">
 <meta name="theme-color" content="#EDEAE0">
 <meta property="og:title" content="Jengibre — Café · Restaurante · Playroom">
-<meta property="og:description" content="Cafetería y cocina de 9 a 23 h en Av. Belgrano 1227, Mendoza.">
+<meta property="og:description" content="Todos los días de 9 a 00 h en Av. Belgrano 1227, Mendoza.">
 <meta property="og:image" content="assets/img/hero-mesa.webp">
 <meta property="og:locale" content="es_AR">
 <link rel="icon" href="assets/svg/rama_verde.svg" type="image/svg+xml">
@@ -17,9 +17,10 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <noscript><style>.pre{display:none!important}</style></noscript>
 <script>
-  // Si ya vio el preloader en esta sesión o prefiere menos movimiento, no lo mostramos.
+  // Si ya vio el preloader en esta sesión, prefiere menos movimiento o llega con un enlace
+  // directo a la reserva (ej. desde Instagram), no lo mostramos.
   try {
-    if (sessionStorage.getItem('jg-pre') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (sessionStorage.getItem('jg-pre') || matchMedia('(prefers-reduced-motion: reduce)').matches || /^#(reservar|dia-de-la-madre)$/.test(location.hash)) {
       document.documentElement.classList.add('sin-pre');
     }
   } catch (e) {}
@@ -32,6 +33,12 @@
   "description": "Café, restaurante y playroom.",
   "address": { "@type": "PostalAddress", "streetAddress": "Av. Belgrano 1227", "addressLocality": "Mendoza", "addressCountry": "AR" },
   "telephone": "+54 9 261 660 1830",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "09:00",
+    "closes": "23:59"
+  }],
   "hasMenu": "carta.html"
 }
 </script>
@@ -503,7 +510,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
           </div>
         </div>
       </div>
-      <p class="label hero__horario">Cafetería y cocina · de 9 a 23 h</p>
+      <p class="label hero__horario">Todos los días · de 9 a 00 h</p>
     </div>
   </section>
 
@@ -514,7 +521,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
       <img class="t2" src="assets/svg/rama_verde.svg" alt="" data-speed="10">
       <img class="t3" src="assets/svg/rama_verde.svg" alt="" data-speed="-6">
     </div>
-    <p class="manifiesto__texto" data-lineas>Abrimos a las nueve con café y medialunas, y cerramos a las once, cuando se levanta la última mesa. En el medio hay cocina casera de todo el día: pastas, carnes, ensaladas y postres, para comer sin mirar el reloj.</p>
+    <p class="manifiesto__texto" data-lineas>Abrimos todos los días a las nueve con café y medialunas, y cerramos a medianoche, cuando se levanta la última mesa. En el medio hay cocina casera de todo el día: pastas, carnes, ensaladas y postres, para comer sin mirar el reloj.</p>
     <div class="manifiesto__grid">
       <div class="panel" data-sube>
         <span class="label">Una mesa para</span>
@@ -530,7 +537,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
   <!-- Momentos del día -->
   <section class="momentos" id="momentos" aria-labelledby="momentos-titulo">
     <div class="cabeza">
-      <span class="label">Del café a la cena · 9 a 23 h</span>
+      <span class="label">Del café a la cena · 9 a 00 h</span>
       <h2 id="momentos-titulo" data-lineas>Cuatro momentos, <em>una misma mesa</em></h2>
     </div>
     <div class="momentos__pin">
@@ -554,7 +561,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
           <p>Brownie con helado de crema americana, crumble de manzana o un tostado de jamón y queso.</p>
         </article>
         <article class="momento">
-          <div class="momento__hora"><span class="label">Hasta las 23</span><span class="label">Cocina</span></div>
+          <div class="momento__hora"><span class="label">Hasta medianoche</span><span class="label">Cocina</span></div>
           <h3 class="momento__nombre">Noche</h3>
           <div class="momento__media">
             <video muted loop playsinline preload="none" poster="assets/img/noche-plato.webp" data-autoplay aria-label="Plato de carne a la parrilla con papas">
@@ -565,7 +572,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
           <p>Ojo de bife, sorrentinos de osobuco y vacío al roquefort.</p>
         </article>
         <div class="momentos__final">
-          <p>Todo el día, <span style="white-space:nowrap">de 9 a 23 h.</span></p>
+          <p>Todos los días, <span style="white-space:nowrap">de 9 a 00 h.</span></p>
           <a class="btn" href="carta.html">Ver la carta</a>
         </div>
       </div>
@@ -665,7 +672,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
     <div class="pie__foto"><img src="assets/img/cafe.webp" alt="Café con leche y medialuna sobre una mesa de madera" loading="lazy" data-parallax></div>
     <div class="pie__panel" data-sube>
       <h2 class="pie__titulo">La mesa <em>está lista</em></h2>
-      <p>Cafetería y cocina de 9 a 23 h. Reservá tu mesa por WhatsApp.</p>
+      <p>Todos los días de 9 a 00 h. Reservá tu mesa por WhatsApp.</p>
       <div class="pie__datos">
         <p><span class="label pie__dato-titulo">Dirección</span>Av. Belgrano 1227, Mendoza<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Belgrano%201227%2C%20Mendoza" target="_blank" rel="noopener">Cómo llegar</a></p>
         <p><span class="label pie__dato-titulo">Reservas</span><span class="pie__wa" data-wa-texto>+54 9 261 660 1830</span></p>
@@ -700,6 +707,7 @@ c-18 -314 -31 -468 -46 -545 -8 -41 -17 -104 -20 -140 -4 -36 -13 -87 -20
         <label for="r-motivo">Motivo</label>
         <select id="r-motivo" name="motivo">
           <option value="mesa">Reservar una mesa</option>
+          <option value="madre" data-hasta="2026-10-18">Día de la Madre · domingo 18 de octubre</option>
           <option value="evento">Consultar por un evento privado</option>
         </select>
       </div>

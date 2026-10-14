@@ -96,7 +96,7 @@
   };
   if (panel && form) {
     const hora = $('#r-hora');
-    const ini = cfg.horaApertura || 9, fin = cfg.horaCierre || 23;
+    const ini = cfg.horaApertura || 9, fin = cfg.horaCierre || 24;
     for (let h = ini; h < fin; h++) {
       ['00', '30'].forEach((m) => {
         const o = document.createElement('option');
@@ -109,10 +109,21 @@
     const iso = new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
     $('#r-fecha').min = iso;
     $('#r-fecha').value = iso;
+    // Motivos con fecha fija (ej. Día de la Madre): se ofrecen hasta ese día y completan la fecha solos
+    const motivo = $('#r-motivo');
+    $$('option[data-hasta]', motivo).forEach((o) => { if (iso > o.dataset.hasta) o.remove(); });
+    const fechaDelMotivo = () => {
+      const o = motivo.selectedOptions[0];
+      if (o && o.dataset.hasta) $('#r-fecha').value = o.dataset.hasta;
+    };
+    motivo.addEventListener('change', fechaDelMotivo);
 
     const abrirReserva = (motivo) => {
       origen = document.activeElement;
-      if (motivo) $('#r-motivo').value = motivo;
+      if (motivo && $(`#r-motivo option[value="${motivo}"]`)) {
+        $('#r-motivo').value = motivo;
+        fechaDelMotivo();
+      }
       $('#r-listo').hidden = true;
       form.hidden = false;
       panel.hidden = false;
@@ -135,6 +146,14 @@
       abrirReserva(b.dataset.motivo);
     }));
     $$('[data-cerrar-reserva]').forEach((b) => b.addEventListener('click', cerrarReserva));
+    // Enlaces directos a la reserva, para Instagram: jengibrerestaurante.com/#reservar
+    // o jengibrerestaurante.com/#dia-de-la-madre
+    const reservaDesdeEnlace = () => {
+      if (location.hash === '#reservar') abrirReserva();
+      else if (location.hash === '#dia-de-la-madre') abrirReserva('madre');
+    };
+    reservaDesdeEnlace();
+    window.addEventListener('hashchange', reservaDesdeEnlace);
     panel.addEventListener('click', (e) => { if (e.target === panel) cerrarReserva(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !panel.hidden) cerrarReserva();
@@ -157,7 +176,9 @@
       const n = +d.personas;
       const quien = n === 1 ? '1 persona' : `${n} personas`;
       let msg;
-      if (d.motivo === 'evento') {
+      if (d.motivo === 'madre') {
+        msg = `Hola Jengibre, quiero reservar una mesa para el Día de la Madre para ${quien} el ${fechaLegible(d.fecha)} a las ${d.hora}.`;
+      } else if (d.motivo === 'evento') {
         msg = `Hola Jengibre, quiero consultar por un evento privado para ${quien} el ${fechaLegible(d.fecha)} a las ${d.hora}.`;
       } else {
         msg = `Hola Jengibre, quiero reservar una mesa para ${quien} el ${fechaLegible(d.fecha)} a las ${d.hora}.`;

@@ -7,5 +7,5 @@ window.JENGIBRE = {
   whatsappTexto: '+54 9 261 660 1830',
   instagram: '',
   horaApertura: 9,
-  horaCierre: 23
+  horaCierre: 24 // abre todos los días de 9 a 00 h; el último turno de reserva es 23:30
 };
