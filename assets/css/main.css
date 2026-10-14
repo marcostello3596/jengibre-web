@@ -261,10 +261,12 @@ html.sin-pre .pre { display: none; }
 .pie__dato-titulo { display: block; margin-bottom: 6px; color: var(--arena); }
 .pie__wa { font: 500 clamp(1.8rem, 3.6vw, 3.2rem)/1 var(--f-display); color: var(--arena); }
 .pie__acciones { display: flex; flex-wrap: wrap; gap: 14px; }
-.pie__marca { padding: clamp(40px, 6vw, 80px) var(--gutter) 24px; display: grid; gap: 28px; }
+.pie__marca { padding: clamp(40px, 6vw, 80px) var(--gutter) calc(env(safe-area-inset-bottom, 0px) + 96px); display: grid; gap: 28px; } /* abajo deja lugar para el botón flotante de Reservar */
 .pie__marca img { width: 100%; height: auto; opacity: .95; }
 .pie__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .78rem; letter-spacing: .06em; color: rgba(237, 234, 224, .82); }
 .pie__legal a { text-decoration: none; }
+.pie__credito a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.pie__credito a:hover { color: var(--papel); }
 
 /* ---------- Reserva ---------- */
 .reservar-flotante {
