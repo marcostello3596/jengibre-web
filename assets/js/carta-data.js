@@ -100,19 +100,19 @@ window.CARTA = [
     id: 'bendita-gula', grupo: 'postres', titulo: 'Postres de Bendita\u00a0Gula', logo: 'assets/img/bendita-gula-oliva.png',
     nota: 'La pastelería de Bendita Gula, en nuestra mesa.',
     items: [
-      { n: 'Tiramisú' },
-      { n: 'Tarta de ricota' },
-      { n: 'Cheesecake NY', d: 'De frutos rojos.' },
-      { n: 'Brownie Nutella' },
-      { n: 'Brownie Gitano', d: 'Con frutillas frescas, cortadas en el momento.' },
-      { n: 'Chocotorta' },
-      { n: 'Cookies and Cream', d: 'De Oreo.' },
-      { n: 'Carrot cake' },
+      { n: 'Tiramisú', p: 5000 },
+      { n: 'Tarta de ricota', p: 3000 },
+      { n: 'Cheesecake NY', d: 'De frutos rojos.', p: 5000 },
+      { n: 'Brownie Nutella', p: 7500 },
+      { n: 'Brownie Gitano', d: 'Con frutillas frescas, cortadas en el momento.', p: 5000 },
+      { n: 'Chocotorta', p: 7000 },
+      { n: 'Cookies and Cream', d: 'De Oreo.', p: 6000 },
+      { n: 'Carrot cake', p: 5000 },
       { n: 'Lemon pie' },
-      { n: 'Tarta Cabsha' },
-      { n: 'Torta Matilde' },
-      { n: 'Red velvet' },
-      { n: 'Lemon Gula' }
+      { n: 'Tarta Cabsha', p: 4000 },
+      { n: 'Torta Matilda', p: 7000 },
+      { n: 'Red velvet', p: 5000 },
+      { n: 'Lemon Gula', p: 5000 }
     ]
   }
 ];
