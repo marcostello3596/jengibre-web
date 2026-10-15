@@ -108,7 +108,7 @@ window.CARTA = [
       { n: 'Chocotorta', p: 7000 },
       { n: 'Cookies and Cream', d: 'De Oreo.', p: 6000 },
       { n: 'Carrot cake', p: 5000 },
-      { n: 'Lemon pie' },
+      { n: 'Lemon pie', p: 4000 },
       { n: 'Tarta Cabsha', p: 4000 },
       { n: 'Torta Matilda', p: 7000 },
       { n: 'Red velvet', p: 5000 },
