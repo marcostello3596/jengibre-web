@@ -13,7 +13,8 @@ window.CARTA = [
       { n: 'Té clásico', p: 3000 },
       { n: 'Medialuna', p: 1500 },
       { n: 'Tortita', p: 1200 },
-      { n: 'Medialuna con jamón y queso', p: 3000 }
+      { n: 'Medialuna con jamón y queso', p: 3000 },
+      { n: 'Tortita con jamón y queso', p: 2000 }
     ]
   },
   {
@@ -37,7 +38,9 @@ window.CARTA = [
       { n: 'Burger', d: 'Medallón casero, pan de papa, jamón cocido, muzzarella, lechuga y tomate, con papas fritas.' },
       { n: 'Suprema con calabazas', d: 'A la plancha, con calabazas al horno y ensalada mixta. Sin TACC.' },
       { n: 'Lasagna de verduras', d: 'Acelga, cebolla, morrón y bechamel en masa de panqueque, con muzzarella y filetto.' },
-      { n: 'Burger veggie', d: 'Medallón de zanahoria y queso en pan de papa, con rúcula y tomate, con papas.' }
+      { n: 'Burger veggie', d: 'Medallón de zanahoria y queso en pan de papa, con rúcula y tomate, con papas.' },
+      { n: 'Hamburguesa clásica' },
+      { n: 'Sorrentinos de calabaza y muzzarella', d: 'Con salsa bechamel, champiñones y verdeo.' }
     ]
   },
   {
@@ -61,6 +64,8 @@ window.CARTA = [
   {
     id: 'pastas', grupo: 'cocina', titulo: 'Pastas',
     items: [
+      { n: 'Ñoquis con albóndigas', d: 'Ñoquis de papa con albóndigas y salsa mixta, filetto o bechamel.', p: 25000 },
+      { n: 'Sorrentinos de calabaza y muzzarella', d: 'Con salsa bechamel, champiñones y verdeo.', p: 25000 },
       { n: 'Lasagna de verduras', d: 'Acelga y cebolla en masa de panqueque, con muzzarella y filetto.', p: 26000 },
       { n: 'Volcán de ñoquis', d: 'Ñoquis caseros con salsa mixta, servidos dentro de un pan hecho en casa.', p: 27000 },
       { n: 'Sorrentinos de jamón y queso', d: 'Con salsa rosa de vodka, filetto, bechamel o mixta.', p: 28000 },
@@ -83,6 +88,7 @@ window.CARTA = [
     items: [
       { n: 'Burger vegetariana', d: 'Medallón de zanahoria y muzzarella, con rúcula, tomate y guacamole, con papas fritas.', p: 18000 },
       { n: 'American burger', d: 'Medallón casero, pan de papa, cebolla caramelizada, cheddar y panceta, con papas fritas.', p: 24000 },
+      { n: 'Burger de la casa', d: 'Medallón casero, pan de papa, guacamole, rúcula, huevo, muzzarella y jamón.', p: 24000 },
       { n: 'Sándwich crispy', d: 'Pollo crispy, guacamole, tomate, rúcula y muzzarella, con papas fritas.', p: 26000 },
       { n: 'Lomo de la casa', d: 'Lomo a la plancha, jamón, muzzarella, huevo, tomate, lechuga y salsa criolla, con papas fritas.', p: 32000 }
     ]
