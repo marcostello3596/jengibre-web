@@ -122,6 +122,38 @@ window.CARTA = [
     ]
   },
   {
+    id: 'sintacc-cocina', grupo: 'sintacc', titulo: 'Cocina sin TACC',
+    nota: 'Para celíacos.',
+    items: [
+      { n: 'Ensalada Mar', p: 27000 },
+      { n: 'Ensalada de temporada', p: 27000 },
+      { n: 'Suprema a la plancha', p: 25000 },
+      { n: 'Suprema con calabaza', p: 22000 },
+      { n: 'Vacío al roquefort', p: 35000 },
+      { n: 'Wrap de pollo', p: 27000 },
+      { n: 'Bife de lomo al plato', p: 28000 },
+      { n: 'Lomo clásico', p: 30000 }
+    ]
+  },
+  {
+    id: 'sintacc-pastas', grupo: 'sintacc', titulo: 'Pastas sin TACC',
+    nota: 'Para celíacos.',
+    items: [
+      { n: 'Raviolón de jamón y queso', p: 30000 },
+      { n: 'Raviolón de ricota y verdura', p: 35000 },
+      { n: 'Ñoquis', p: 35000 }
+    ]
+  },
+  {
+    id: 'sintacc-cafeteria', grupo: 'sintacc', titulo: 'Cafetería sin TACC',
+    nota: 'Para celíacos.',
+    items: [
+      { n: 'Huevos revueltos', p: 8500 },
+      { n: 'Tortita', d: 'Por unidad.', p: 1500 },
+      { n: 'Medialuna', d: 'Por unidad.', p: 1700 }
+    ]
+  },
+  {
     id: 'sin-alcohol', grupo: 'bebidas', titulo: 'Limonadas, jugos y aguas',
     items: [
       { n: 'Limonada clásica', p: 7000 },
@@ -186,5 +218,6 @@ window.CARTA_FILTROS = [
   { id: 'menu', t: 'Menú del día' },
   { id: 'cocina', t: 'Cocina' },
   { id: 'postres', t: 'Postres' },
+  { id: 'sintacc', t: 'Sin TACC' },
   { id: 'bebidas', t: 'Bebidas' }
 ];
