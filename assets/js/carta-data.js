@@ -120,6 +120,63 @@ window.CARTA = [
       { n: 'Red velvet', p: 5000 },
       { n: 'Lemon Gula', p: 5000 }
     ]
+  },
+  {
+    id: 'sin-alcohol', grupo: 'bebidas', titulo: 'Limonadas, jugos y aguas',
+    items: [
+      { n: 'Limonada clásica', p: 7000 },
+      { n: 'Limonada menta y jengibre', p: 8000 },
+      { n: 'Limonada pura vida', p: 8500 },
+      { n: 'Jarra de limonada', p: 15000 },
+      { n: 'Jugo de naranja', p: 8500 },
+      { n: 'Agua con o sin gas', p: 5000 },
+      { n: 'Agua saborizada', p: 5500 },
+      { n: 'Agua saborizada', d: '1,5 litros.', p: 8000 },
+      { n: 'Gaseosa línea Pepsi', p: 5500 },
+      { n: 'Coca-Cola', d: '1,5 litros.', p: 8000 }
+    ]
+  },
+  {
+    id: 'cervezas', grupo: 'bebidas', titulo: 'Cervezas',
+    items: [
+      { n: 'Andes Origen', d: 'Latón de 710 cc.', p: 10000 },
+      { n: 'Andes Origen', d: 'Litro.', p: 13000 },
+      { n: 'Stella Artois', d: 'Lata de 473 cc.', p: 9500 },
+      { n: 'Stella Artois', d: 'Litro.', p: 15000 },
+      { n: 'Michelob Ultra', d: '275 cc.', p: 7500 },
+      { n: 'Patagonia', d: '730 cc.', p: 14500 },
+      { n: 'Stella Artois sin alcohol', d: 'Lata.', p: 6500 }
+    ]
+  },
+  {
+    id: 'cocktails', grupo: 'bebidas', titulo: 'Cocktails',
+    nota: 'Happy hour: 2 × $15.000.',
+    items: [
+      { n: 'Gin tonic Heredero' },
+      { n: 'Fernet Branca' },
+      { n: 'Caipiroska de maracuyá o frutos rojos' },
+      { n: 'Fratella' },
+      { n: 'Mojito tradicional' },
+      { n: 'Hibiscus tonic' },
+      { n: 'Gingger julep' },
+      { n: 'Amargo julep' },
+      { n: 'Cuba libre' }
+    ]
+  },
+  {
+    id: 'vinos', grupo: 'bebidas', titulo: 'Vinos y espumantes',
+    items: [
+      { n: 'Las Perdices', d: 'Por copa.', p: 8500 },
+      { n: 'Las Perdices Brut Rosé', d: 'Espumante.', p: 22000 },
+      { n: 'Chandon Extra Brut', d: 'Espumante.', p: 60000 },
+      { n: 'Azul Malbec', p: 19000 },
+      { n: 'Azul Sauvignon Blanc', p: 21000 },
+      { n: 'Azul Reserva Malbec', p: 75000 },
+      { n: 'Emilia Malbec', p: 25000 },
+      { n: 'Emilia Dulce Natural', p: 25000 },
+      { n: 'Benjamín Malbec', p: 22000 },
+      { n: 'Nieto Senetiner Malbec', p: 27000 }
+    ]
   }
 ];
 window.CARTA_FILTROS = [
@@ -128,5 +185,6 @@ window.CARTA_FILTROS = [
   { id: 'desayunos', t: 'Desayunos y meriendas' },
   { id: 'menu', t: 'Menú del día' },
   { id: 'cocina', t: 'Cocina' },
-  { id: 'postres', t: 'Postres' }
+  { id: 'postres', t: 'Postres' },
+  { id: 'bebidas', t: 'Bebidas' }
 ];
