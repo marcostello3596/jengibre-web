@@ -5,11 +5,11 @@ window.CARTA = [
     id: 'cafeteria', grupo: 'cafeteria', titulo: 'Cafetería', nota: 'De 9 a 00 h.',
     items: [
       { n: 'Café pocillo', p: 2800 },
-      { n: 'Café doble', p: 3700 },
+      { n: 'Café doble o cortado', p: 4000 },
       { n: 'Café latte', p: 4000 },
-      { n: 'Cappuccino', p: 4500 },
-      { n: 'Mocaccino', p: 6000 },
-      { n: 'Submarino', p: 6000 },
+      { n: 'Cappuccino', p: 6000 },
+      { n: 'Mocaccino', p: 8000 },
+      { n: 'Submarino', p: 8000 },
       { n: 'Té clásico', p: 3000 },
       { n: 'Medialuna', p: 1500 },
       { n: 'Tortita', p: 1200 },
@@ -20,11 +20,11 @@ window.CARTA = [
   {
     id: 'desayunos', grupo: 'desayunos', titulo: 'Desayunos y meriendas', nota: 'Las promos van con café, té o jugo de naranja.',
     items: [
-      { n: 'Promo medialunas', d: 'Con dos medialunas.', p: 4000 },
+      { n: 'Promo medialunas o tortitas', d: 'Con dos medialunas o dos tortitas.', p: 6000 },
       { n: 'Promo tostadas', d: 'Pan de campo con manteca y mermelada.', p: 7400 },
-      { n: 'Promo tostado', d: 'Tostado de jamón y queso en pan árabe.', p: 8000 },
-      { n: 'Promo huevos revueltos', d: 'Tostadas de pan de campo, huevo revuelto y jamón cocido.', p: 9000 },
-      { n: 'Promo con postre', d: 'Con el postre del día.', p: 12000 },
+      { n: 'Promo tostado', d: 'Tostado de jamón y queso en pan baguette.', p: 8000 },
+      { n: 'Promo huevos revueltos', d: 'Tostadas de pan de campo, huevo revuelto y jamón cocido.', p: 10000 },
+      { n: 'Promo con postre', d: 'Con el postre del día.', p: 10000 },
       { n: 'Promo con bruschetta', d: 'Pan de campo, jamón cocido, rúcula, guacamole, tomate y pesto de albahaca.', p: 15000 },
       { n: 'Tostada de la casa', d: 'Pan de campo con palta, queso crema y huevos revueltos.', p: 12000 }
     ]
@@ -106,19 +106,19 @@ window.CARTA = [
     id: 'bendita-gula', grupo: 'postres', titulo: 'Postres de Bendita\u00a0Gula', logo: 'assets/img/bendita-gula-oliva.png',
     nota: 'La pastelería de Bendita Gula, en nuestra mesa.',
     items: [
-      { n: 'Tiramisú', p: 5000 },
-      { n: 'Tarta de ricota', p: 3000 },
-      { n: 'Cheesecake NY', d: 'De frutos rojos.', p: 5000 },
+      { n: 'Tiramisú', p: 6000 },
+      { n: 'Tarta de ricota', p: 6000 },
+      { n: 'Cheesecake NY', d: 'De frutos rojos.', p: 6000 },
       { n: 'Brownie Nutella', p: 7500 },
-      { n: 'Brownie Gitano', d: 'Con frutillas frescas, cortadas en el momento.', p: 5000 },
+      { n: 'Brownie Gitano', d: 'Con frutillas frescas, cortadas en el momento.', p: 6000 },
       { n: 'Chocotorta', p: 7000 },
       { n: 'Cookies and Cream', d: 'De Oreo.', p: 6000 },
-      { n: 'Carrot cake', p: 5000 },
-      { n: 'Lemon pie', p: 4000 },
+      { n: 'Carrot cake', p: 6000 },
+      { n: 'Lemon pie', p: 5000 },
       { n: 'Tarta Cabsha', p: 4000 },
-      { n: 'Torta Matilda', p: 7000 },
-      { n: 'Red velvet', p: 5000 },
-      { n: 'Lemon Gula', p: 5000 }
+      { n: 'Torta Matilda', p: 8000 },
+      { n: 'Red velvet', p: 7000 },
+      { n: 'Lemon Gula', p: 6000 }
     ]
   },
   {
